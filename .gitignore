@@ -9,3 +9,7 @@ data/
 models/
 # Notebooks checkpoints
 *.ipynb_checkpoints/
+
+/config.local
+.dvc/tmp
+/cache
