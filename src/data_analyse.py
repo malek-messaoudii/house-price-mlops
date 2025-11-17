@@ -5,7 +5,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import os
 
-def analyze_and_clean(input_path="data/train.csv", output_path="data/train_cleaned.csv", corr_threshold=0.1):
+def analyze_and_clean(input_path="data/train.csv", output_path="data/train.csv", corr_threshold=0.1):
     """
     Analyse la corrélation des features avec la cible SalePrice,
     supprime les colonnes peu utiles et sauvegarde le dataset nettoyé.
