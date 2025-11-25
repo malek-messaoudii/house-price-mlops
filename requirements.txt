@@ -27,3 +27,10 @@ tornado==6.5.2
 traitlets==5.14.3
 typing_extensions==4.15.0
 wcwidth==0.2.14
+
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+joblib
