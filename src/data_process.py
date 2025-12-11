@@ -3,7 +3,7 @@ from sklearn.model_selection import train_test_split
 import os
 import yaml
 
-def prepare_data(input_path="data/raw/data.csv", output_dir="data/processed"):
+def prepare_data(input_path="data/train.csv", output_dir="data/processed"):
     # 1. Charger la config
     with open("params.yaml", "r") as f:
         params = yaml.safe_load(f)["data_process"]

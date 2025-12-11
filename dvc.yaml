@@ -13,7 +13,7 @@ stages:
     # Dépendances : Si le code ou la donnée brute change
     deps:
       - src/data_process.py
-      - data/raw/data.csv
+      - data/train.csv
     
     # Paramètres : Si la config scientifique change
     params:
@@ -33,6 +33,9 @@ stages:
     deps:
       - src/train.py
       - data/processed
+      - params.yaml
+    params:
+      - train.fit_intercept
     outs:
       - models/model.pkl
 
@@ -45,7 +48,9 @@ stages:
       - src/eval.py
       - models/model.pkl
       - data/processed
-    
+      - params.yaml
+    params:
+      - eval.output_dir
     # Métriques : cache: false pour que Git/DAGsHub lisent le JSON
     metrics:
       - metrics/metrics.json:
