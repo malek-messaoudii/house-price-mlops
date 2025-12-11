@@ -1,0 +1,53 @@
+# On importe le fichier params pour utiliser les variables ${...}
+vars:
+  - params.yaml
+
+stages:
+  # ---------------------------------------------------------
+  # ÉTAPE 1 : Préparation & Feature Engineering
+  # ---------------------------------------------------------
+  data_process:
+    # Commande : Script + Entrée (Variable) + Sortie (Dossier)
+    cmd: python src/data_process.py
+    
+    # Dépendances : Si le code ou la donnée brute change
+    deps:
+      - src/data_process.py
+      - data/raw/data.csv
+    
+    # Paramètres : Si la config scientifique change
+    params:
+      - data_process.test_size
+      - data_process.random_state
+      - data_process.correlation_threshold
+    
+    # Sorties : Le gros dossier de données (Géré par DVC Cache)
+    outs:
+      - data/processed
+
+  # ---------------------------------------------------------
+  # ÉTAPE 2 : Entraînement du Modèle
+  # ---------------------------------------------------------
+  train:
+    cmd: python src/train.py
+    deps:
+      - src/train.py
+      - data/processed
+    outs:
+      - models/model.pkl
+
+  # ---------------------------------------------------------
+  # ÉTAPE 3 : Évaluation & Visualisation
+  # ---------------------------------------------------------
+  eval:
+    cmd: python src/eval.py
+    deps:
+      - src/eval.py
+      - models/model.pkl
+      - data/processed
+    
+    # Métriques : cache: false pour que Git/DAGsHub lisent le JSON
+    metrics:
+      - metrics/metrics.json:
+          cache: false
+  
