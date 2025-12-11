@@ -1,8 +1,10 @@
 [core]
-    remote = mygdrive
+    remote = origin
 ['remote "myremote"']
     url = gdrive://1ZYLTTvKAay4D7KGgGzDldhFkYt5nRaWS
     gdrive_use_service_account = false
 ['remote "mygdrive"']
     url = gdrive://1MtZ9x8Yjs1gV2rsUJlSykseWIRxQWTTy
-
+['remote "origin"']
+    url = s3://house-prices-mlops
+    endpointurl = https://dagshub.com/api/v1/repo-buckets/s3/malek-messaoudii
