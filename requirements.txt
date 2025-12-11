@@ -34,3 +34,5 @@ scikit-learn
 matplotlib
 seaborn
 joblib
+dvc-s3
+pyyaml
